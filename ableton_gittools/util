@@ -1,0 +1,11 @@
+function all_als_to_xml() {
+    find $1 -regex '.*als$' -exec sh -c 'gunzip -c "$0" > "$0".unzipped.xml' {} \;
+}
+
+function all_xml_to_als() {
+    find $1 -regex '.*als.unzipped.xml$' -exec sh -c 'gzip -c "$0" > ${0%.unzipped.xml}' {} \;
+}
+
+function git_add_xml() {
+    find $1 -regex '.*als.unzipped.xml$' -exec sh -c 'git add "$0"' {} \;
+}
